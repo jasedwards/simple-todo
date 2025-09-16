@@ -1,0 +1,19 @@
+{
+  "name": "@simple-todo/config",
+  "version": "1.0.0",
+  "description": "Shared configuration for Simple Todo application",
+  "main": "index.ts",
+  "types": "index.ts",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "scripts": {
+    "build": "tsc",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "~5.9.2"
+  }
+}

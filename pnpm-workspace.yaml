@@ -1,0 +1,12 @@
+packages:
+  # Apps
+  - "apps/*"
+
+  # Packages
+  - "packages/*"
+
+  # Infrastructure (if needed)
+  - "infrastructure/*"
+
+  # Tools (if needed)
+  - "tools/*"
