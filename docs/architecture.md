@@ -75,8 +75,8 @@ For this BMad methodology demonstration, a **monorepo approach using npm workspa
 **Structure:** Monorepo with clear package boundaries
 **Monorepo Tool:** npm workspaces (lightweight, no additional tooling complexity)
 **Package Organization:**
-- `apps/web` (Angular frontend)
-- `apps/api` (Node.js/Express backend)
+- `apps/simple-todo` (Angular frontend)
+- `apps/simple-todo-backend` (Node.js/Express backend)
 - `packages/shared` (TypeScript interfaces, utilities)
 - `packages/ui` (shared Angular components)
 
@@ -155,9 +155,9 @@ This is the **DEFINITIVE technology selection** for the entire BMad Demonstratio
 | Category | Technology | Version | Purpose | Rationale |
 |----------|------------|---------|---------|-----------|
 | Frontend Language | TypeScript | 5.2+ | Type-safe frontend development | Ensures code quality and enables seamless fullstack type sharing for collaborative development |
-| Frontend Framework | Angular | 17+ | Professional SPA framework | Mature enterprise framework showcasing technical sophistication, excellent for stakeholder demonstrations |
-| UI Component Library | Angular Material | 17+ | Professional component system | Consistent design language, accessibility compliance, impressive visual quality for presentations |
-| State Management | NgRx | 17+ | Predictable state management | Handles complex analytics state and real-time updates, demonstrates advanced Angular patterns |
+| Frontend Framework | Angular | 20+ | Professional SPA framework | Mature enterprise framework showcasing technical sophistication, excellent for stakeholder demonstrations |
+| UI Component Library | Angular Material | 20+ | Professional component system | Consistent design language, accessibility compliance, impressive visual quality for presentations |
+| State Management | NgRx | 20+ | Predictable state management | Handles complex analytics state and real-time updates, demonstrates advanced Angular patterns |
 | Backend Language | Node.js | 20 LTS | JavaScript runtime | Enables fullstack TypeScript consistency, rapid development for collaborative planning timeline |
 | Backend Framework | Express.js | 4.18+ | Web application framework | Lightweight, flexible API development with extensive middleware ecosystem |
 | API Style | REST with WebSocket | HTTP/1.1 + WS | RESTful APIs + real-time updates | REST for standard CRUD, WebSocket for live analytics showcase and real-time collaboration features |
@@ -165,11 +165,11 @@ This is the **DEFINITIVE technology selection** for the entire BMad Demonstratio
 | Cache | Redis | 7+ | Session and analytics caching | High-performance caching for analytics queries and session management |
 | File Storage | Supabase Storage | Latest | Decision log attachments | Integrated with Supabase ecosystem, handles methodology documentation artifacts |
 | Authentication | Supabase Auth | Latest | User authentication system | JWT-based auth with social providers, professional security for stakeholder confidence |
-| Frontend Testing | Jest + Testing Library | Latest | Unit and integration testing | Industry standard testing stack ensuring code quality for collaborative development |
+| Frontend Testing | vitest + Testing Library | Latest | Unit and integration testing | Industry standard testing stack ensuring code quality for collaborative development |
 | Backend Testing | Jest + Supertest | Latest | API and service testing | Comprehensive backend testing for reliability during stakeholder demonstrations |
 | E2E Testing | Playwright | Latest | End-to-end automation | Cross-browser testing ensuring presentation reliability across stakeholder environments |
-| Build Tool | Angular CLI | 17+ | Frontend build system | Optimized Angular builds with professional deployment artifacts |
-| Bundler | Webpack (via Angular) | Latest | Module bundling | Built into Angular CLI, optimized for production presentations |
+| Build Tool | Angular CLI | 20+ | Frontend build system | Optimized Angular builds with professional deployment artifacts |
+| Bundler | esbuild (via Angular) | Latest | Module bundling | Built into Angular CLI, optimized for production presentations |
 | IaC Tool | Vercel CLI | Latest | Infrastructure deployment | Declarative infrastructure supporting rapid collaborative deployment cycles |
 | CI/CD | GitHub Actions | Latest | Automated deployment pipeline | Integrated with repository, supports transparent development methodology |
 | Monitoring | Vercel Analytics + Sentry | Latest | Performance and error tracking | Professional monitoring showcasing technical sophistication and reliability |
@@ -1840,6 +1840,244 @@ CREATE POLICY user_tasks_policy ON tasks
 ## Frontend Architecture
 
 Defining the Angular-specific architecture details that support both sophisticated task management functionality and professional stakeholder demonstration requirements. The frontend architecture emphasizes real-time analytics capabilities and collaborative planning visualization.
+
+### Angular Coding Standards
+
+**MANDATORY**: All Angular development must follow signals-based architecture with zoneless operation and comprehensive JSDoc documentation.
+
+#### Signals-Based Architecture Requirements
+
+**Core Principles:**
+- All state management uses Angular Signals
+- Zoneless change detection with `provideExperimentalZonelessChangeDetection()`
+- OnPush change detection strategy for all components
+- Comprehensive JSDoc documentation for all public APIs
+- Modern Angular patterns with standalone components
+
+#### Bootstrap Configuration for Zoneless Mode
+
+```typescript
+/**
+ * Application bootstrap with zoneless configuration
+ * @file main.ts
+ * @description Optimized Angular bootstrap for signals-based architecture
+ */
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { AppComponent } from './app/app.component';
+import { routes } from './app/app.routes';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    // CRITICAL: Enable zoneless change detection
+    provideExperimentalZonelessChangeDetection(),
+
+    // Optimized providers for performance
+    provideRouter(routes),
+    provideHttpClient(withFetch()),
+
+    // Application-specific providers
+    // ...
+  ]
+}).catch(err => console.error(err));
+```
+
+#### Component Pattern Template
+
+```typescript
+/**
+ * Standard component template following signals-based architecture
+ * @component ExampleComponent
+ * @description Template demonstrating required patterns and documentation
+ * @signals
+ * - `data`: Component data state
+ * - `loading`: Loading state indicator
+ * - `error`: Error message state
+ * @example
+ * ```html
+ * <app-example
+ *   [initialData]="data()"
+ *   (dataChange)="onDataChange($event)">
+ * </app-example>
+ * ```
+ */
+@Component({
+  selector: 'app-example',
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule, MatCardModule],
+  template: `
+    <div class="component-container">
+      @if (loading()) {
+        <div class="loading-state">Loading...</div>
+      } @else if (error(); as errorMsg) {
+        <div class="error-state">{{ errorMsg }}</div>
+      } @else {
+        <div class="content">
+          <!-- Component content with signals -->
+          <h2>{{ computedTitle() }}</h2>
+          <p>Data count: {{ data().length }}</p>
+        </div>
+      }
+    </div>
+  `
+})
+export class ExampleComponent implements OnInit {
+  /**
+   * Input signal for initial data
+   * @input
+   * @signal
+   */
+  initialData = input<DataItem[]>([]);
+
+  /**
+   * Output for data changes
+   * @output
+   */
+  dataChange = output<DataItem[]>();
+
+  /**
+   * Internal data signal
+   * @signal
+   */
+  data = signal<DataItem[]>([]);
+
+  /**
+   * Loading state signal
+   * @signal
+   */
+  loading = signal<boolean>(false);
+
+  /**
+   * Error state signal
+   * @signal
+   */
+  error = signal<string | null>(null);
+
+  /**
+   * Computed title signal
+   * @computed
+   */
+  computedTitle = computed(() => {
+    const items = this.data();
+    return `Data Overview (${items.length} items)`;
+  });
+
+  ngOnInit(): void {
+    // Initialize with input data
+    effect(() => {
+      const initial = this.initialData();
+      this.data.set(initial);
+    });
+  }
+}
+```
+
+#### Service Pattern Template
+
+```typescript
+/**
+ * Standard service template with signals-based state management
+ * @service ExampleService
+ * @description Demonstrates signals-based service patterns
+ */
+@Injectable({
+  providedIn: 'root'
+})
+export class ExampleService {
+  /**
+   * Private state signals
+   * @private
+   * @signal
+   */
+  private readonly _items = signal<Item[]>([]);
+  private readonly _loading = signal<boolean>(false);
+  private readonly _error = signal<string | null>(null);
+
+  /**
+   * Public readonly signals
+   * @readonly
+   * @signal
+   */
+  readonly items = this._items.asReadonly();
+  readonly loading = this._loading.asReadonly();
+  readonly error = this._error.asReadonly();
+
+  /**
+   * Computed signals for derived state
+   * @computed
+   */
+  readonly itemCount = computed(() => this._items().length);
+  readonly hasItems = computed(() => this._items().length > 0);
+
+  private readonly http = inject(HttpClient);
+
+  /**
+   * Loads items with signals-based state management
+   * @method loadItems
+   * @async
+   */
+  async loadItems(): Promise<void> {
+    this._loading.set(true);
+    this._error.set(null);
+
+    try {
+      const items = await firstValueFrom(
+        this.http.get<Item[]>('/api/items')
+      );
+      this._items.set(items);
+    } catch (error) {
+      this._error.set('Failed to load items');
+    } finally {
+      this._loading.set(false);
+    }
+  }
+}
+```
+
+#### JSDoc Documentation Standards
+
+**Required JSDoc tags for components:**
+- `@component` - Component name
+- `@description` - Detailed component description
+- `@signals` - List of component signals
+- `@example` - Usage example with HTML
+- `@since` - Version introduced
+
+**Required JSDoc tags for services:**
+- `@service` - Service name
+- `@injectable` - Injectable annotation
+- `@description` - Service purpose and functionality
+- `@since` - Version introduced
+
+**Required JSDoc tags for signals:**
+- `@signal` - Mark as signal
+- `@readonly` - For readonly signals
+- `@computed` - For computed signals
+- `@input` - For input signals
+- `@output` - For output signals
+- `@private` - For private signals
+- `@description` - Signal purpose
+- `@type` - TypeScript type
+- `@returns` - Return type for computed signals
+
+#### Comprehensive Standards Reference
+
+For complete coding standards, advanced patterns, and detailed examples, see:
+
+📋 **[Angular Coding Standards](./architecture/coding-standards.md)**
+
+This document contains:
+- Advanced signals patterns and state management
+- Comprehensive component and service examples
+- Performance optimization techniques
+- Testing strategies for signals-based code
+- Accessibility and error handling standards
+- Pre-commit checklists and code review guidelines
+
+**All team members must follow these standards for consistent, maintainable, and performant Angular code.**
 
 ### Component Architecture
 
