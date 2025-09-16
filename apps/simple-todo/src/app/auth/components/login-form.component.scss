@@ -1,0 +1,495 @@
+/**
+ * Login form component styles
+ * @description Modern, accessible login form styling
+ */
+
+.login-form-container {
+  max-width: 420px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  @media (max-width: 640px) {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 0.5rem 0;
+  }
+
+  p {
+    color: #6b7280;
+    margin: 0;
+  }
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+    background-color: #ffffff;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    &:hover:not(:focus) {
+      border-color: #9ca3af;
+    }
+
+    &.error {
+      border-color: #ef4444;
+      background-color: #fef2f2;
+
+      &:focus {
+        border-color: #ef4444;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+      }
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+}
+
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  input {
+    padding-right: 3rem;
+  }
+
+  .password-toggle {
+    position: absolute;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: #374151;
+    }
+
+    &:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
+  }
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.875rem;
+
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+
+    &:checked ~ .checkmark {
+      background-color: #3b82f6;
+      border-color: #3b82f6;
+
+      &::after {
+        display: block;
+      }
+    }
+
+    &:focus ~ .checkmark {
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+  }
+
+  .checkmark {
+    position: relative;
+    height: 1.25rem;
+    width: 1.25rem;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    transition: all 0.2s ease-in-out;
+
+    &::after {
+      content: '';
+      position: absolute;
+      display: none;
+      left: 4px;
+      top: 1px;
+      width: 6px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+
+  &:hover .checkmark {
+    border-color: #9ca3af;
+  }
+
+  .checkbox-label {
+    color: #374151;
+  }
+}
+
+.forgot-password-link {
+  color: #3b82f6;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 480px) {
+    align-self: flex-start;
+  }
+}
+
+.field-error {
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '⚠';
+    margin-right: 0.25rem;
+  }
+}
+
+.submit-button {
+  width: 100%;
+  background-color: #3b82f6;
+  color: #ffffff;
+  padding: 0.875rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  &:hover:not(:disabled) {
+    background-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  &.loading {
+    background-color: #9ca3af;
+  }
+
+  .loading-spinner {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form-error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '⚠';
+    margin-right: 0.5rem;
+    font-size: 1rem;
+  }
+}
+
+.form-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+
+  p {
+    color: #6b7280;
+    margin: 0;
+    font-size: 0.875rem;
+  }
+
+  .link {
+    color: #3b82f6;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+
+    &:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+}
+
+.dev-notice {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+
+  h4 {
+    color: #92400e;
+    margin: 0 0 0.5rem 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  p {
+    color: #78350f;
+    margin: 0 0 0.5rem 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    color: #78350f;
+    font-weight: 600;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .login-form-container {
+    background: #1f2937;
+    color: #f9fafb;
+
+    .form-header h2 {
+      color: #f9fafb;
+    }
+
+    .form-group {
+      label {
+        color: #d1d5db;
+      }
+
+      input {
+        background-color: #374151;
+        border-color: #4b5563;
+        color: #f9fafb;
+
+        &:focus {
+          border-color: #60a5fa;
+          box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+        }
+
+        &:hover:not(:focus) {
+          border-color: #6b7280;
+        }
+
+        &.error {
+          background-color: #441b1b;
+        }
+
+        &::placeholder {
+          color: #9ca3af;
+        }
+      }
+    }
+
+    .password-toggle {
+      color: #9ca3af;
+
+      &:hover {
+        color: #d1d5db;
+      }
+    }
+
+    .checkbox-container {
+      .checkmark {
+        background-color: #374151;
+        border-color: #4b5563;
+      }
+
+      .checkbox-label {
+        color: #d1d5db;
+      }
+
+      &:hover .checkmark {
+        border-color: #6b7280;
+      }
+    }
+
+    .form-error {
+      background-color: #441b1b;
+      border-color: #7f1d1d;
+    }
+
+    .dev-notice {
+      background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
+      border-color: #92400e;
+
+      h4 {
+        color: #fbbf24;
+      }
+
+      p {
+        color: #fcd34d;
+      }
+
+      strong {
+        color: #fbbf24;
+      }
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .login-form-container {
+    border: 2px solid #000000;
+  }
+
+  .form-group input {
+    border-width: 2px;
+
+    &:focus {
+      box-shadow: 0 0 0 2px #000000;
+    }
+
+    &.error {
+      border-width: 2px;
+    }
+  }
+
+  .submit-button:focus {
+    box-shadow: 0 0 0 2px #000000;
+  }
+
+  .checkbox-container input:focus ~ .checkmark {
+    box-shadow: 0 0 0 2px #000000;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .submit-button,
+  .form-group input,
+  .password-toggle,
+  .forgot-password-link,
+  .link,
+  .checkmark {
+    transition: none;
+  }
+
+  .loading-spinner {
+    animation: none;
+  }
+
+  .submit-button:hover:not(:disabled) {
+    transform: none;
+  }
+}

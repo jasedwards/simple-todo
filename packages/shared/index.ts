@@ -3,6 +3,6 @@
  * @packageDocumentation
  */
 
-// Re-export all shared types, interfaces, and utilities
+// Re-export all shared types and interfaces
 export * from './types';
 export * from './utils';

@@ -4,6 +4,7 @@ import {
   provideZonelessChangeDetection,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { appRoutes } from './app.routes';
 
 /**
@@ -27,6 +28,8 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     /** Zoneless change detection per coding standards (Angular 20.2.0) */
     provideZonelessChangeDetection(),
+    /** HTTP client with fetch API for better performance */
+    provideHttpClient(withFetch()),
     /** Router configuration with application routes */
     provideRouter(appRoutes),
   ],

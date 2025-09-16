@@ -1,0 +1,383 @@
+/**
+ * Registration form component styles
+ * @description Modern, accessible form styling
+ */
+
+.registration-form-container {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  @media (max-width: 640px) {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 0.5rem 0;
+  }
+
+  p {
+    color: #6b7280;
+    margin: 0;
+  }
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+    background-color: #ffffff;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    &:hover:not(:focus) {
+      border-color: #9ca3af;
+    }
+
+    &.error {
+      border-color: #ef4444;
+      background-color: #fef2f2;
+
+      &:focus {
+        border-color: #ef4444;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+      }
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+}
+
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  input {
+    padding-right: 3rem;
+  }
+
+  .password-toggle {
+    position: absolute;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: #374151;
+    }
+
+    &:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
+  }
+}
+
+.password-strength {
+  margin-top: 0.75rem;
+
+  .strength-indicator {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+
+    &.strength-weak {
+      color: #ef4444;
+    }
+
+    &.strength-medium {
+      color: #f59e0b;
+    }
+
+    &.strength-strong {
+      color: #10b981;
+    }
+  }
+
+  .strength-requirements {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.75rem;
+
+    li {
+      color: #6b7280;
+      margin-bottom: 0.25rem;
+      position: relative;
+      padding-left: 1.25rem;
+
+      &::before {
+        content: '✗';
+        position: absolute;
+        left: 0;
+        color: #ef4444;
+        font-weight: 600;
+      }
+
+      &.valid {
+        color: #10b981;
+
+        &::before {
+          content: '✓';
+          color: #10b981;
+        }
+      }
+    }
+  }
+}
+
+.field-error {
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '⚠';
+    margin-right: 0.25rem;
+  }
+}
+
+.submit-button {
+  width: 100%;
+  background-color: #3b82f6;
+  color: #ffffff;
+  padding: 0.875rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  &:hover:not(:disabled) {
+    background-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  &.loading {
+    background-color: #9ca3af;
+  }
+
+  .loading-spinner {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form-error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '⚠';
+    margin-right: 0.5rem;
+    font-size: 1rem;
+  }
+}
+
+.form-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+
+  p {
+    color: #6b7280;
+    margin: 0;
+    font-size: 0.875rem;
+  }
+
+  .link {
+    color: #3b82f6;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+
+    &:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .registration-form-container {
+    background: #1f2937;
+    color: #f9fafb;
+
+    .form-header h2 {
+      color: #f9fafb;
+    }
+
+    .form-group {
+      label {
+        color: #d1d5db;
+      }
+
+      input {
+        background-color: #374151;
+        border-color: #4b5563;
+        color: #f9fafb;
+
+        &:focus {
+          border-color: #60a5fa;
+          box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+        }
+
+        &:hover:not(:focus) {
+          border-color: #6b7280;
+        }
+
+        &.error {
+          background-color: #441b1b;
+        }
+
+        &::placeholder {
+          color: #9ca3af;
+        }
+      }
+    }
+
+    .password-toggle {
+      color: #9ca3af;
+
+      &:hover {
+        color: #d1d5db;
+      }
+    }
+
+    .form-error {
+      background-color: #441b1b;
+      border-color: #7f1d1d;
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .registration-form-container {
+    border: 2px solid #000000;
+  }
+
+  .form-group input {
+    border-width: 2px;
+
+    &:focus {
+      box-shadow: 0 0 0 2px #000000;
+    }
+
+    &.error {
+      border-width: 2px;
+    }
+  }
+
+  .submit-button:focus {
+    box-shadow: 0 0 0 2px #000000;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .submit-button,
+  .form-group input,
+  .password-toggle,
+  .link {
+    transition: none;
+  }
+
+  .loading-spinner {
+    animation: none;
+  }
+
+  .submit-button:hover:not(:disabled) {
+    transform: none;
+  }
+}

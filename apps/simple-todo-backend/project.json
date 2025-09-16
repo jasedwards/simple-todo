@@ -80,6 +80,16 @@
           "buildTarget": "simple-todo-backend:build:production"
         }
       }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
+      "options": {
+        "config": "apps/simple-todo-backend/vite.config.ts",
+        "reportsDirectory": "../../coverage/apps/simple-todo-backend"
+      }
     }
   },
   "tags": []
