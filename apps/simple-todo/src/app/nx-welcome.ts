@@ -1,9 +1,24 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+/**
+ * Welcome component that displays the Nx welcome screen with project information.
+ *
+ * This component serves as a placeholder welcome screen and can be replaced
+ * with actual todo application components. It implements OnPush change detection
+ * strategy per coding standards.
+ *
+ * @component
+ * @standalone
+ * @example
+ * ```html
+ * <app-nx-welcome></app-nx-welcome>
+ * ```
+ */
 @Component({
   selector: 'app-nx-welcome',
   imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <!--
      * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -869,4 +884,10 @@ nx g &#64;nx/angular:component ui/src/lib/button</pre>
   styles: [],
   encapsulation: ViewEncapsulation.None,
 })
-export class NxWelcome {}
+export class NxWelcome {
+  /**
+   * NxWelcome component class.
+   * This is a placeholder component that displays Nx welcome content.
+   * Can be replaced with actual application components.
+   */
+}
