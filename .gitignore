@@ -7,3 +7,11 @@ vite.config.*.timestamp*
 vitest.config.*.timestamp*
 node_modules
 
+# Angular specific
+/dist/
+/out-tsc/
+/tmp/
+/coverage/
+/e2e/test-output/
+/.angular/
+.angular/
